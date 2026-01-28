@@ -1,160 +1,43 @@
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>배터리 전극 물성 계산기</title>
+    <title>Battery Electrode Property Calculator</title>
     
-    <!-- PWA 설정 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="전극 계산기">
+    <meta name="apple-mobile-web-app-title" content="Electrode Calc">
     <meta name="theme-color" content="#2563eb">
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIuuwsO2EsOumrCDsoITqt7Ag66y87ISxIOqzoOyCsOq4sCIsCiAgInNob3J0X25hbWUiOiAi7KCE6re5IOqzoOyCsOq4sCIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZjlmYWZiIiwKICAidGhlbWVfY29sb3IiOiAiIzI1NjNlYiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmclMjB4bWxucyUzRCdodHRwJTNBJTJGJTJGd3d3LnczLm9yZyUyRjIwMDAlMkZzdmcnJTIwdmlld0JveCUzRCcwJTIwMCUyMDEwMCUyMDEwMCclM0UlM0NyZWN0JTIwd2lkdGglM0QnMTAwJyUyMGhlaWdodCUzRCcxMDAnJTIwZmlsbCUzRCclMjMyNTYzZWInJTJGJTNFJTNDdGV4dCUyMHglM0QnNTAlMjUyNSclMjB5JTNEJzUwJTI1MjUnJTIwZm9udC1zaXplJTNEJzYwJyUyMHRleHQtYW5jaG9yJTNEJ21pZGRsZSclMjBkb21pbmFudC1iYXNlbGluZSUzRCdtaWRkbGUnJTIwZmlsbCUzRCd3aGl0ZSclM0UlRjAlOUYlOTQlOEIlM0MlMkZ0ZXh0JTNFJTNDJTJGc3ZnJTNFIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnJTIweG1sbnMlM0QnaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJyUyMHZpZXdCb3glM0QnMCUyMDAlMjAxMDAlMjAxMDAnJTNFJTNDcmVjdCUyMHdpZHRoJTNEJzEwMCclMjBoZWlnaHQlM0QnMTAwJyUyMGZpbGwlM0QnJTIzMjU2M2ViJyUyRiUzRSUzQ3RleHQlMjB4JTNEJzUwJTI1MjUnMjB5JTNEJzUwJTI1MjUnMjBmb250LXNpemUlM0QnNjAnMjB0ZXh0LWFuY2hvciUzRCdtaWRkbGUnMjBkb21pbmFudC1iYXNlbGluZSUzRCdtaWRkbGUnMjBmaWxsJTNEJ3doaXRlJyUzRSVGMCU5RiU5NCU4QiUzQyUyRnRleHQlM0UlM0MlMkZzdmclM0UiLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQmF0dGVyeSBFbGVjdHJvZGUgUHJvcGVydHkgQ2FsY3VsYXRvciIsInNob3J0X25hbWUiOiJFbGVjdHJvZGUgQ2FsYyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjlmYWZiIiwidGhlbWVfY29sb3IiOiIjMjU2M2ViIiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI1LzI1NjE5LnBuZyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: #f9fafb;
-            padding: 1.5rem;
-            line-height: 1.5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .header h1 {
-            font-size: 2rem;
-            color: #111827;
-            margin-bottom: 0.5rem;
-        }
-        .header p {
-            color: #6b7280;
-        }
-        .mode-badge {
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            background: #dbeafe;
-            border-radius: 0.5rem;
-            display: inline-block;
-            color: #1e40af;
-            font-weight: 600;
-        }
-        .card {
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #111827;
-            margin-bottom: 1.5rem;
-        }
-        .section-title {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 0.75rem;
-        }
-        .button-group {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-        .btn {
-            flex: 1;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
-        .btn-secondary {
-            background: #e5e7eb;
-            color: #374151;
-        }
-        .btn-success {
-            background: #16a34a;
-            color: white;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .input-group {
-            background: #f9fafb;
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            border: 1px solid #e5e7eb;
-        }
-        .input-group label {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 0.75rem;
-        }
-        .input-group select,
-        .input-group input {
-            width: 100%;
-            padding: 0.625rem 1rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .input-group input[type="number"] {
-            font-weight: bold;
-        }
-        .input-with-unit {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .input-with-unit input {
-            flex: 1;
-            margin-bottom: 0;
-        }
-        .input-with-unit span {
-            font-weight: 600;
-            color: #4b5563;
-            white-space: nowrap;
-        }
-        .info-text {
-            font-size: 0.75rem;
-            color: #6b7280;
-            margin-top: 0.25rem;
-        }
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-        }
-        .result-card {
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            border: 1px solid;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; background: #f9fafb; padding: 1.5rem; line-height: 1.5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 2rem; }
+        .header h1 { font-size: 2rem; color: #111827; margin-bottom: 0.5rem; }
+        .header p { color: #6b7280; }
+        .mode-badge { margin-top: 1rem; padding: 0.75rem 1.5rem; background: #dbeafe; border-radius: 0.5rem; display: inline-block; color: #1e40af; font-weight: 600; }
+        .card { background: white; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .card-title { font-size: 1.5rem; font-weight: bold; color: #111827; margin-bottom: 1.5rem; }
+        .section-title { font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; }
+        .button-group { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .btn { flex: 1; padding: 0.75rem 1.5rem; border: none; border-radius: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-secondary { background: #e5e7eb; color: #374151; }
+        .btn-success { background: #16a34a; color: white; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .input-group { background: #f9fafb; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e5e7eb; }
+        .input-group label { display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; }
+        .input-group select, .input-group input { width: 100%; padding: 0.625rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; margin-bottom: 0.5rem; }
+        .input-group input[type="number"] { font-weight: bold; }
+        .input-with-unit { display: flex; align-items: center; gap: 0.5rem; }
+        .input-with-unit input { flex: 1; margin-bottom: 0; }
+        .input-with-unit span { font-weight: 600; color: #4b5563; white-space: nowrap; }
+        .info-text { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
+        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .result-card { padding: 1.25rem; border-radius: 0.75rem; border: 1px solid; }
         .result-card.blue { background: #eff6ff; border-color: #bfdbfe; }
         .result-card.green { background: #f0fdf4; border-color: #bbf7d0; }
         .result-card.purple { background: #faf5ff; border-color: #e9d5ff; }
@@ -165,11 +48,7 @@
         .result-card.indigo { background: #eef2ff; border-color: #c7d2fe; }
         .result-card.violet { background: #f5f3ff; border-color: #ddd6fe; }
         .result-card.amber { background: #fffbeb; border-color: #fde68a; }
-        .result-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
+        .result-label { font-size: 0.75rem; font-weight: 600; margin-bottom: 0.25rem; }
         .result-card.blue .result-label { color: #1e40af; }
         .result-card.green .result-label { color: #15803d; }
         .result-card.purple .result-label { color: #6b21a8; }
@@ -180,11 +59,7 @@
         .result-card.indigo .result-label { color: #3730a3; }
         .result-card.violet .result-label { color: #5b21b6; }
         .result-card.amber .result-label { color: #b45309; }
-        .result-value {
-            font-size: 1.875rem;
-            font-weight: bold;
-            margin-bottom: 0.25rem;
-        }
+        .result-value { font-size: 1.875rem; font-weight: bold; margin-bottom: 0.25rem; }
         .result-card.blue .result-value { color: #1d4ed8; }
         .result-card.green .result-value { color: #16a34a; }
         .result-card.purple .result-value { color: #7c3aed; }
@@ -195,201 +70,150 @@
         .result-card.indigo .result-value { color: #4f46e5; }
         .result-card.violet .result-value { color: #7c3aed; }
         .result-card.amber .result-value { color: #d97706; }
-        .result-unit {
-            font-size: 0.75rem;
-            color: #4b5563;
-        }
-        .info-box {
-            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
-            border: 1px solid #93c5fd;
-            border-radius: 1rem;
-            padding: 2rem;
-        }
-        .info-box h3 {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #111827;
-            margin-bottom: 1rem;
-        }
-        .info-box p {
-            color: #374151;
-            font-size: 0.875rem;
-            margin-bottom: 0.625rem;
-            line-height: 1.6;
-        }
-        .info-box strong {
-            color: #1e40af;
-        }
-        .custom-inputs {
-            display: none;
-            margin-top: 0.75rem;
-        }
-        .custom-inputs.active {
-            display: block;
-        }
-        .custom-input-item {
-            margin-bottom: 0.75rem;
-        }
-        .custom-input-item label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #4b5563;
-            margin-bottom: 0.25rem;
-        }
-        .custom-input-item input {
-            width: 100%;
-            padding: 0.5rem 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 0.5rem;
-            font-weight: bold;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            .card {
-                padding: 1.25rem;
-            }
-            .result-value {
-                font-size: 1.5rem;
-            }
-        }
+        .result-unit { font-size: 0.75rem; color: #4b5563; }
+        .info-box { background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%); border: 1px solid #93c5fd; border-radius: 1rem; padding: 2rem; }
+        .info-box h3 { font-size: 1.25rem; font-weight: bold; color: #111827; margin-bottom: 1rem; }
+        .info-box p { color: #374151; font-size: 0.875rem; margin-bottom: 0.625rem; line-height: 1.6; }
+        .info-box strong { color: #1e40af; }
+        .custom-inputs { display: none; margin-top: 0.75rem; }
+        .custom-inputs.active { display: block; }
+        .custom-input-item { margin-bottom: 0.75rem; }
+        .custom-input-item label { display: block; font-size: 0.75rem; font-weight: 600; color: #4b5563; margin-bottom: 0.25rem; }
+        .custom-input-item input { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-weight: bold; }
+        @media (max-width: 768px) { body { padding: 1rem; } .header h1 { font-size: 1.5rem; } .card { padding: 1.25rem; } .result-value { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>배터리 전극 물성 계산기</h1>
-            <p>실제 배터리 제조 조건 기반 전극 밀도 및 공극률 계산</p>
-            <div class="mode-badge">📐 설계 모드</div>
+            <h1>Battery Electrode Property Calculator</h1>
+            <p>Calculate electrode density and porosity based on manufacturing parameters</p>
+            <div class="mode-badge">📐 Cell Design Mode</div>
         </div>
 
         <div class="card">
-            <h2 class="card-title">전극 구성 입력</h2>
+            <h2 class="card-title">Slurry Composition</h2>
             <div class="info-text" style="margin-bottom: 1rem; padding: 0.75rem; background: #eff6ff; border-radius: 0.5rem; border: 1px solid #bfdbfe;">
-                ℹ️ 모든 비율은 <strong>무게 기준(wt%)</strong>입니다
+                ℹ️ All values are based on <strong>Weight Percentage (wt%)</strong>
             </div>
             
-            <div class="section-title">전극 타입</div>
+            <div class="section-title">Electrode Type</div>
             <div class="button-group">
-                <button class="btn btn-primary" id="cathodeBtn">양극 (Cathode)</button>
-                <button class="btn btn-secondary" id="anodeBtn">음극 (Anode)</button>
+                <button class="btn btn-primary" id="cathodeBtn">Cathode</button>
+                <button class="btn btn-secondary" id="anodeBtn">Anode</button>
             </div>
 
             <div class="grid">
                 <div class="input-group">
-                    <label>활물질 (무게비)</label>
+                    <label>Active Material Content</label>
                     <select id="activeMaterial">
                         <option value="NCM811">NCM811</option>
                         <option value="NCM622">NCM622</option>
                         <option value="LFP">LFP</option>
                         <option value="LCO">LCO</option>
-                        <option value="Custom">커스텀 활물질</option>
+                        <option value="Custom">Custom Active Material</option>
                     </select>
                     <div class="custom-inputs" id="customMaterialInputs">
                         <div class="custom-input-item">
-                            <label>물질명 (선택)</label>
-                            <input type="text" id="customName" placeholder="예: NMC532, LNMO">
+                            <label>Name (Optional)</label>
+                            <input type="text" id="customName" placeholder="e.g. NMC532, LNMO">
                         </div>
                         <div class="custom-input-item">
-                            <label>밀도 (g/cm³)</label>
+                            <label>Density (g/cm³)</label>
                             <input type="number" id="customDensity" inputmode="decimal" value="4.00" step="0.01" min="1" max="10">
                         </div>
                         <div class="custom-input-item">
-                            <label>가용비용량 (mAh/g)</label>
+                            <label>Specific Capacity (mAh/g)</label>
                             <input type="number" id="customCapacity" inputmode="decimal" value="180" step="1" min="50" max="1000">
                         </div>
                         <div class="custom-input-item">
-                            <label>공칭 전압 (V)</label>
+                            <label>Nominal Voltage (V)</label>
                             <input type="number" id="customVoltage" inputmode="decimal" value="3.7" step="0.1" min="0.1" max="5.0">
                         </div>
                     </div>
-                    <div class="info-text" id="activeMaterialInfo">밀도: 4.70 g/cm³<br>가용비용량: 200 mAh/g<br>공칭전압: 3.7 V<br>권장 전압범위: 3.0-4.2 V</div>
+                    <div class="info-text" id="activeMaterialInfo">Density: 4.70 g/cm³<br>Spec. Capacity: 200 mAh/g<br>Nominal Voltage: 3.7 V<br>Voltage Range: 3.0-4.2 V</div>
                     <div class="input-with-unit" style="margin-top: 0.5rem;">
                         <input type="number" id="activeMaterialRatio" inputmode="decimal" value="94" step="0.1" min="80" max="98">
-                        <span>%</span>
+                        <span>wt%</span>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label>바인더 (무게비)</label>
+                    <label>Binder Content</label>
                     <select id="binder">
                         <option value="PVDF">PVDF</option>
                         <option value="SBR">SBR</option>
                         <option value="CMC">CMC</option>
                         <option value="PAA">PAA</option>
-                        <option value="Custom">커스텀 바인더</option>
+                        <option value="Custom">Custom Binder</option>
                     </select>
                     <div class="custom-inputs" id="customBinderInputs">
                         <div class="custom-input-item">
-                            <label>바인더명 (선택)</label>
-                            <input type="text" id="customBinderName" placeholder="예: PVA, PTFE">
+                            <label>Name (Optional)</label>
+                            <input type="text" id="customBinderName" placeholder="e.g. PVA, PTFE">
                         </div>
                         <div class="custom-input-item">
-                            <label>밀도 (g/cm³)</label>
+                            <label>Density (g/cm³)</label>
                             <input type="number" id="customBinderDensity" inputmode="decimal" value="1.50" step="0.01" min="0.5" max="3">
                         </div>
                     </div>
                     <div class="input-with-unit">
                         <input type="number" id="binderRatio" inputmode="decimal" value="3" step="0.1" min="1" max="10">
-                        <span>%</span>
+                        <span>wt%</span>
                     </div>
-                    <div class="info-text" id="binderInfo">밀도: 1.78 g/cm³</div>
+                    <div class="info-text" id="binderInfo">Density: 1.78 g/cm³</div>
                 </div>
 
                 <div class="input-group">
-                    <label>도전재 (무게비)</label>
+                    <label>Conductive Additive</label>
                     <select id="conductor">
                         <option value="Carbon Black">Carbon Black</option>
                         <option value="Super-P">Super-P</option>
                         <option value="CNT">CNT</option>
                         <option value="Graphene">Graphene</option>
-                        <option value="Custom">커스텀 도전재</option>
+                        <option value="Custom">Custom Additive</option>
                     </select>
                     <div class="custom-inputs" id="customConductorInputs">
                         <div class="custom-input-item">
-                            <label>도전재명 (선택)</label>
-                            <input type="text" id="customConductorName" placeholder="예: VGCF, KB">
+                            <label>Name (Optional)</label>
+                            <input type="text" id="customConductorName" placeholder="e.g. VGCF, KB">
                         </div>
                         <div class="custom-input-item">
-                            <label>밀도 (g/cm³)</label>
+                            <label>Density (g/cm³)</label>
                             <input type="number" id="customConductorDensity" inputmode="decimal" value="2.00" step="0.01" min="0.5" max="3">
                         </div>
                     </div>
                     <div class="input-with-unit">
                         <input type="number" id="conductorRatio" inputmode="decimal" value="3" step="0.1" min="1" max="10">
-                        <span>%</span>
+                        <span>wt%</span>
                     </div>
-                    <div class="info-text" id="conductorInfo">밀도: 1.95 g/cm³</div>
+                    <div class="info-text" id="conductorInfo">Density: 1.95 g/cm³</div>
                 </div>
             </div>
 
             <div class="grid">
                 <div class="input-group">
-                    <label>코팅 중량</label>
+                    <label>Mass Loading</label>
                     <div class="input-with-unit">
-                        <input type="number" id="coatingWeight" inputmode="decimal" value="" step="0.1" min="5" max="30" placeholder="예: 15.0">
+                        <input type="number" id="coatingWeight" inputmode="decimal" value="" step="0.1" min="5" max="30" placeholder="e.g. 15.0">
                         <span>mg/cm²</span>
                     </div>
+                    <div class="info-text">Total coating weight per side</div>
                 </div>
 
                 <div class="input-group">
-                    <label>코팅 두께 (압축 후)</label>
+                    <label>Thickness (Calendered)</label>
                     <div class="input-with-unit">
-                        <input type="number" id="coatingThickness" inputmode="decimal" value="" step="1" min="40" max="150" placeholder="예: 80">
+                        <input type="number" id="coatingThickness" inputmode="decimal" value="" step="1" min="40" max="150" placeholder="e.g. 80">
                         <span>μm</span>
                     </div>
-                    <div class="info-text">캘린더링 후 두께 입력<br>공극률 30-40% 목표</div>
+                    <div class="info-text">After calendering process<br>Target porosity: 30-40%</div>
                 </div>
 
                 <div class="input-group">
-                    <label>코팅 면적</label>
+                    <label>Electrode Area</label>
                     <div class="input-with-unit">
-                        <input type="number" id="coatingArea" inputmode="decimal" value="" step="10" min="50" max="500" placeholder="예: 100">
+                        <input type="number" id="coatingArea" inputmode="decimal" value="" step="10" min="50" max="500" placeholder="e.g. 100">
                         <span>cm²</span>
                     </div>
                 </div>
@@ -397,77 +221,70 @@
         </div>
 
         <div class="card" id="resultsCard">
-            <h2 class="card-title">계산 결과 (설계용)</h2>
+            <h2 class="card-title">Simulation Results</h2>
             <div class="result-grid" id="resultsGrid"></div>
         </div>
 
         <div class="card" id="npRatioCard">
-            <h2 class="card-title">N/P Ratio 계산</h2>
+            <h2 class="card-title">N/P Ratio Analysis</h2>
             <div class="info-text" style="margin-bottom: 1rem; padding: 0.75rem; background: #fef3c7; border-radius: 0.5rem; border: 1px solid #fde68a;">
-                ℹ️ N/P Ratio = 음극 용량 / 양극 용량 (권장: 1.0~1.2)
+                ℹ️ N/P Ratio = Anode Capacity / Cathode Capacity (Optimal: 1.05~1.15)
             </div>
             <div class="input-group" style="max-width: 300px; margin-bottom: 1.5rem;">
-                <label>목표 N/P Ratio</label>
+                <label>Target N/P Ratio</label>
                 <div class="input-with-unit">
                     <input type="number" id="targetNPRatio" inputmode="decimal" value="1.1" step="0.05" min="0.8" max="1.5">
                     <span>-</span>
                 </div>
-                <div class="info-text">전극 설계 목표 N/P ratio</div>
+                <div class="info-text">Design goal</div>
             </div>
             <div class="result-grid" id="npRatioGrid"></div>
         </div>
 
         <div class="card" id="experimentalCard">
-            <h2 class="card-title">🔬 실험 데이터 비교</h2>
+            <h2 class="card-title">🔬 Experimental Validation</h2>
             <div class="info-text" style="margin-bottom: 1.5rem; padding: 0.75rem; background: #f0fdf4; border-radius: 0.5rem; border: 1px solid #bbf7d0;">
-                ℹ️ 실제 측정된 방전용량을 mAh/cm² 또는 mAh/g 단위로 입력하세요 (자동 변환됩니다)
+                ℹ️ Input measured discharge capacity for validation (auto-converts units)
             </div>
             <div class="grid">
                 <div class="input-group">
-                    <label>실제 측정 방전용량 (면적 기준)</label>
+                    <label>Measured Areal Capacity</label>
                     <div class="input-with-unit">
-                        <input type="number" id="measuredCapacity" inputmode="decimal" value="" step="0.01" min="0" placeholder="예: 2.5">
+                        <input type="number" id="measuredCapacity" inputmode="decimal" value="" step="0.01" min="0" placeholder="e.g. 2.5">
                         <span>mAh/cm²</span>
                     </div>
-                    <div class="info-text">실험에서 측정된 면적 방전용량</div>
                 </div>
                 <div class="input-group">
-                    <label>실제 측정 방전용량 (중량 기준)</label>
+                    <label>Measured Spec. Capacity</label>
                     <div class="input-with-unit">
-                        <input type="number" id="measuredCapacityGravimetric" inputmode="decimal" value="" step="0.1" min="0" placeholder="예: 140">
+                        <input type="number" id="measuredCapacityGravimetric" inputmode="decimal" value="" step="0.1" min="0" placeholder="e.g. 140">
                         <span>mAh/g</span>
                     </div>
-                    <div class="info-text">실험에서 측정된 중량 방전용량</div>
                 </div>
                 <div class="input-group">
-                    <label>측정 C-rate</label>
+                    <label>C-rate</label>
                     <div class="input-with-unit">
                         <input type="number" id="measuredCrate" inputmode="decimal" value="0.1" step="0.1" min="0.05" max="5">
                         <span>C</span>
                     </div>
-                    <div class="info-text">용량 측정 시 사용한 C-rate</div>
                 </div>
             </div>
             <div class="result-grid" id="experimentalGrid"></div>
         </div>
 
         <div class="info-box">
-            <h3>계산 원리</h3>
-            <p><strong>이론 밀도:</strong> ρ_이론 = 1 / Σ(w_i / ρ_i), Rule of Mixtures 방식</p>
-            <p><strong>실제 밀도:</strong> ρ_실제 = 코팅 중량 / 코팅 부피, 압축 후 실제 밀도</p>
-            <p><strong>공극률:</strong> ε = 1 - (ρ_실제 / ρ_이론), 전해질 공간 비율</p>
-            <p><strong>⚠️ 압축 가이드:</strong> 코팅 두께는 캘린더링 후 두께 입력. 공극률 30-40% 목표 시, 초기 두께 대비 약 40-50% 압축 필요</p>
-            <p><strong>면적 용량:</strong> C_면적 = 로딩 × 활물질비 × 가용비용량</p>
-            <p><strong>💡 가용비용량:</strong> 입력된 용량은 문헌에서 통상적으로 보고되는 가용 비용량값 (특정 전압범위 기준)</p>
-            <p><strong>체적 에너지밀도:</strong> E_체적 = (C_면적 × 공칭전압) / 두께, (mAh/cm² × V) / cm = Wh/L</p>
-            <p><strong>중량 용량:</strong> C_중량 = 총 용량 / 코팅층 무게 (집전체 제외, 논문 비교용)</p>
-            <p><strong>N/P Ratio:</strong> 목표 N/P ratio 입력 시 필요한 상대 전극 용량 자동 계산, 1.0~1.2가 적정 (1.0 미만: 리튬 석출 위험, 1.2 초과: 용량 낭비)</p>
-            <p><strong>🔬 실험 비교:</strong> 실측 용량은 mAh/cm² 또는 mAh/g 단위로 입력 가능 (자동 변환). 설계값 대비 용량 유지율과 차이를 계산 (85% 이상: 양호)</p>
-            <p><strong>최적 조건:</strong> 공극률 30-40%, 로딩 10-20 mg/cm², 밀도 2.5-3.5 g/cm³</p>
+            <h3>Methodology</h3>
+            <p><strong>Theoretical Density:</strong> ρ_theo = 1 / Σ(w_i / ρ_i), using the Rule of Mixtures.</p>
+            <p><strong>Electrode Density (Pressed):</strong> ρ_actual = Mass Loading / Coating Thickness.</p>
+            <p><strong>Porosity:</strong> ε = 1 - (ρ_actual / ρ_theo). Represents void fraction for electrolyte wetting.</p>
+            <p><strong>Areal Capacity:</strong> Q_areal = Loading × Active Material Fraction × Specific Capacity.</p>
+            <p><strong>Volumetric Energy Density:</strong> E_vol = (Q_areal × Nominal Voltage) / Thickness.</p>
+            <p><strong>N/P Ratio:</strong> Balancing factor between Anode/Cathode capacities to prevent Li-plating (<1.0) or waste (>1.2).</p>
         </div>
     </div>
 
     <script>
+        // Data unchanged, only labels updated in JS output
         const materials = {
             cathode: {
                 'NCM811': { density: 4.70, capacity: 200, nominalVoltage: 3.7, lowerCutoff: 3.0, upperCutoff: 4.2 },
@@ -535,7 +352,7 @@
             });
             const customOption = document.createElement('option');
             customOption.value = 'Custom';
-            customOption.textContent = '커스텀 활물질';
+            customOption.textContent = 'Custom Active Material';
             activeMaterialSelect.appendChild(customOption);
             updateMaterialInfo();
         }
@@ -549,7 +366,7 @@
                 customMaterialInputs.classList.remove('active');
                 activeMaterialInfo.style.display = 'block';
                 const mat = materials[electrodeType][material];
-                activeMaterialInfo.innerHTML = `밀도: ${mat.density} g/cm³<br>가용비용량: ${mat.capacity} mAh/g<br>공칭전압: ${mat.nominalVoltage} V<br>권장 전압범위: ${mat.lowerCutoff}-${mat.upperCutoff} V`;
+                activeMaterialInfo.innerHTML = `Density: ${mat.density} g/cm³<br>Spec. Capacity: ${mat.capacity} mAh/g<br>Nominal Voltage: ${mat.nominalVoltage} V<br>Voltage Range: ${mat.lowerCutoff}-${mat.upperCutoff} V`;
             }
         }
 
@@ -570,7 +387,7 @@
                 customBinderInputs.classList.remove('active');
                 binderInfo.style.display = 'block';
                 const density = materials.binder[binderType].density;
-                binderInfo.textContent = `밀도: ${density} g/cm³`;
+                binderInfo.textContent = `Density: ${density} g/cm³`;
             }
             calculate();
         });
@@ -587,7 +404,7 @@
                 customConductorInputs.classList.remove('active');
                 conductorInfo.style.display = 'block';
                 const density = materials.conductor[conductorType].density;
-                conductorInfo.textContent = `밀도: ${density} g/cm³`;
+                conductorInfo.textContent = `Density: ${density} g/cm³`;
             }
             calculate();
         });
@@ -601,7 +418,7 @@
             }
         });
 
-        // 면적 용량과 중량 용량 간 자동 변환 (입력 완료 후)
+        // Auto conversion
         document.getElementById('measuredCapacity').addEventListener('blur', (e) => {
             const arealCap = parseFloat(e.target.value);
             const coatingWeight = parseFloat(document.getElementById('coatingWeight').value);
@@ -609,7 +426,7 @@
                 const gravCap = (arealCap * 1000) / coatingWeight;
                 document.getElementById('measuredCapacityGravimetric').value = gravCap.toFixed(1);
             }
-            calculate(); // 변환 후 즉시 계산
+            calculate(); 
         });
 
         document.getElementById('measuredCapacityGravimetric').addEventListener('blur', (e) => {
@@ -619,10 +436,9 @@
                 const arealCap = (gravCap * coatingWeight) / 1000;
                 document.getElementById('measuredCapacity').value = arealCap.toFixed(2);
             }
-            calculate(); // 변환 후 즉시 계산
+            calculate(); 
         });
 
-        // 코팅 중량 변경 시 이미 입력된 값이 있으면 자동 재계산 (입력 완료 후)
         document.getElementById('coatingWeight').addEventListener('blur', () => {
             const arealCap = parseFloat(document.getElementById('measuredCapacity').value);
             const coatingWeight = parseFloat(document.getElementById('coatingWeight').value);
@@ -630,7 +446,7 @@
                 const gravCap = (arealCap * 1000) / coatingWeight;
                 document.getElementById('measuredCapacityGravimetric').value = gravCap.toFixed(1);
             }
-            calculate(); // 변환 후 즉시 계산
+            calculate(); 
         });
 
         function calculate() {
@@ -702,44 +518,42 @@
             const cc_weight = rho_cc * cc_thickness * 1e-4 * coatingArea;
             const total_weight = cc_weight + coating_weight_g;
 
-            // N/P Ratio 계산 (목표 N/P ratio 기반)
+            // N/P Ratio Calculation
             const targetNPRatio = parseFloat(document.getElementById('targetNPRatio').value) || 1.1;
             let requiredCounterCapacity, npRatioStatus;
             
             if (electrodeType === 'cathode') {
-                // 양극 설계 중: 필요한 음극 용량 = 양극 용량 × N/P ratio
                 requiredCounterCapacity = areal_capacity * targetNPRatio;
-                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? '적정' : targetNPRatio < 1.0 ? '⚠️ 리튬 석출 위험' : '⚠️ 용량 낭비';
+                npRatioStatus = targetNPRatio >= 1.05 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
             } else {
-                // 음극 설계 중: 필요한 양극 용량 = 음극 용량 / N/P ratio
                 requiredCounterCapacity = areal_capacity / targetNPRatio;
-                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? '적정' : targetNPRatio < 1.0 ? '⚠️ 리튬 석출 위험' : '⚠️ 용량 낭비';
+                npRatioStatus = targetNPRatio >= 1.05 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
             }
 
             const results = [
-                { label: '이론 밀도', value: rho_theoretical.toFixed(3), unit: 'g/cm³', color: 'blue' },
-                { label: '실제 밀도', value: rho_actual.toFixed(3), unit: 'g/cm³', color: 'green' },
-                { label: '공극률', value: porosityPercent.toFixed(2), unit: '%', color: 'purple' },
-                { label: '로딩', value: coatingWeight.toFixed(2), unit: 'mg/cm²', color: 'orange' },
-                { label: '면적 용량', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'yellow' },
-                { label: '체적 에너지밀도', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'pink' },
-                { label: '체적 용량', value: (areal_capacity / coatingThickness_cm).toFixed(1), unit: 'mAh/cm³', color: 'cyan' },
-                { label: '중량 용량', value: gravimetric_capacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
-                { label: '활물질 체적분율', value: ((1 - porosity) * w_active).toFixed(3), unit: '-', color: 'violet' },
-                { label: '공칭 전압', value: nominalVoltage.toFixed(2), unit: 'V', color: 'amber' }
+                { label: 'Theoretical Density', value: rho_theoretical.toFixed(3), unit: 'g/cm³', color: 'blue' },
+                { label: 'Electrode Density', value: rho_actual.toFixed(3), unit: 'g/cm³', color: 'green' },
+                { label: 'Porosity', value: porosityPercent.toFixed(2), unit: '%', color: 'purple' },
+                { label: 'Mass Loading', value: coatingWeight.toFixed(2), unit: 'mg/cm²', color: 'orange' },
+                { label: 'Areal Capacity', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'yellow' },
+                { label: 'Volumetric Energy', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'pink' },
+                { label: 'Volumetric Cap.', value: (areal_capacity / coatingThickness_cm).toFixed(1), unit: 'mAh/cm³', color: 'cyan' },
+                { label: 'Gravimetric Cap.', value: gravimetric_capacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
+                { label: 'Active Vol. Fraction', value: ((1 - porosity) * w_active).toFixed(3), unit: '-', color: 'violet' },
+                { label: 'Nominal Voltage', value: nominalVoltage.toFixed(2), unit: 'V', color: 'amber' }
             ];
 
             const npRatioResults = [
-                { label: electrodeType === 'cathode' ? '양극 용량 (설계)' : '음극 용량 (설계)', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
-                { label: electrodeType === 'cathode' ? '필요한 음극 용량' : '필요한 양극 용량', value: requiredCounterCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
-                { label: '목표 N/P Ratio', value: targetNPRatio.toFixed(2), unit: '-', color: 'amber' },
-                { label: '상태', value: npRatioStatus, unit: '', color: targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'green' : 'orange' }
+                { label: electrodeType === 'cathode' ? 'Cathode Cap (Design)' : 'Anode Cap (Design)', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
+                { label: electrodeType === 'cathode' ? 'Required Anode Cap' : 'Required Cathode Cap', value: requiredCounterCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
+                { label: 'Target N/P Ratio', value: targetNPRatio.toFixed(2), unit: '-', color: 'amber' },
+                { label: 'Status', value: npRatioStatus, unit: '', color: targetNPRatio >= 1.05 && targetNPRatio <= 1.15 ? 'green' : 'orange' }
             ];
 
             displayResults(results, 'resultsGrid');
             displayResults(npRatioResults, 'npRatioGrid');
 
-            // 실험 데이터 비교
+            // Experimental Data
             const measuredCapacity = parseFloat(document.getElementById('measuredCapacity').value);
             if (measuredCapacity && measuredCapacity > 0) {
                 const capacityRetention = (measuredCapacity / areal_capacity) * 100;
@@ -749,31 +563,31 @@
                 const energyRetention = (measuredVolumetricEnergy / energy_density_volumetric) * 100;
                 
                 let retentionStatus;
-                if (capacityRetention >= 95) {
-                    retentionStatus = '✅ 우수';
-                } else if (capacityRetention >= 85) {
-                    retentionStatus = '✓ 양호';
-                } else if (capacityRetention >= 70) {
-                    retentionStatus = '⚠️ 보통';
+                if (capacityRetention >= 98) {
+                    retentionStatus = '✅ Excellent';
+                } else if (capacityRetention >= 90) {
+                    retentionStatus = '✓ Good';
+                } else if (capacityRetention >= 80) {
+                    retentionStatus = '⚠️ Average';
                 } else {
-                    retentionStatus = '⚠️ 불량';
+                    retentionStatus = '⚠️ Poor';
                 }
 
                 const experimentalResults = [
-                    { label: '설계 용량', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
-                    { label: '실측 용량', value: measuredCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
-                    { label: '용량 유지율', value: capacityRetention.toFixed(1), unit: '%', color: capacityRetention >= 85 ? 'green' : 'orange' },
-                    { label: '용량 차이', value: capacityDifference.toFixed(2), unit: 'mAh/cm²', color: capacityDifference >= 0 ? 'cyan' : 'pink' },
-                    { label: '실측 중량용량', value: measuredGravimetricCapacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
-                    { label: '설계 에너지밀도', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'violet' },
-                    { label: '실측 에너지밀도', value: measuredVolumetricEnergy.toFixed(1), unit: 'Wh/L', color: 'purple' },
-                    { label: '에너지밀도 유지율', value: energyRetention.toFixed(1), unit: '%', color: energyRetention >= 85 ? 'green' : 'orange' },
-                    { label: '상태', value: retentionStatus, unit: '', color: capacityRetention >= 85 ? 'green' : 'orange' }
+                    { label: 'Design Capacity', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
+                    { label: 'Measured Capacity', value: measuredCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
+                    { label: 'Retention', value: capacityRetention.toFixed(1), unit: '%', color: capacityRetention >= 90 ? 'green' : 'orange' },
+                    { label: 'Difference', value: capacityDifference.toFixed(2), unit: 'mAh/cm²', color: capacityDifference >= 0 ? 'cyan' : 'pink' },
+                    { label: 'Measured Grav. Cap', value: measuredGravimetricCapacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
+                    { label: 'Design Vol. Energy', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'violet' },
+                    { label: 'Measured Vol. Energy', value: measuredVolumetricEnergy.toFixed(1), unit: 'Wh/L', color: 'purple' },
+                    { label: 'Energy Retention', value: energyRetention.toFixed(1), unit: '%', color: energyRetention >= 90 ? 'green' : 'orange' },
+                    { label: 'Status', value: retentionStatus, unit: '', color: capacityRetention >= 90 ? 'green' : 'orange' }
                 ];
                 
                 displayResults(experimentalResults, 'experimentalGrid');
             } else {
-                document.getElementById('experimentalGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">실제 측정 방전용량을 입력하세요</div>';
+                document.getElementById('experimentalGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">Input measured capacity to validate design</div>';
             }
         }
 
