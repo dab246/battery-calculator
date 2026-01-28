@@ -12,32 +12,147 @@
     <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQmF0dGVyeSBFbGVjdHJvZGUgUHJvcGVydHkgQ2FsY3VsYXRvciIsInNob3J0X25hbWUiOiJFbGVjdHJvZGUgQ2FsYyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjlmYWZiIiwidGhlbWVfY29sb3IiOiIjMjU2M2ViIiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI1LzI1NjE5LnBuZyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; background: #f9fafb; padding: 1.5rem; line-height: 1.5; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .header { text-align: center; margin-bottom: 2rem; }
-        .header h1 { font-size: 2rem; color: #111827; margin-bottom: 0.5rem; }
-        .header p { color: #6b7280; }
-        .mode-badge { margin-top: 1rem; padding: 0.75rem 1.5rem; background: #dbeafe; border-radius: 0.5rem; display: inline-block; color: #1e40af; font-weight: 600; }
-        .card { background: white; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .card-title { font-size: 1.5rem; font-weight: bold; color: #111827; margin-bottom: 1.5rem; }
-        .section-title { font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; }
-        .button-group { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; }
-        .btn { flex: 1; padding: 0.75rem 1.5rem; border: none; border-radius: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-        .btn-primary { background: #2563eb; color: white; }
-        .btn-secondary { background: #e5e7eb; color: #374151; }
-        .btn-success { background: #16a34a; color: white; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
-        .input-group { background: #f9fafb; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e5e7eb; }
-        .input-group label { display: block; font-size: 0.875rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; }
-        .input-group select, .input-group input { width: 100%; padding: 0.625rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; margin-bottom: 0.5rem; }
-        .input-group input[type="number"] { font-weight: bold; }
-        .input-with-unit { display: flex; align-items: center; gap: 0.5rem; }
-        .input-with-unit input { flex: 1; margin-bottom: 0; }
-        .input-with-unit span { font-weight: 600; color: #4b5563; white-space: nowrap; }
-        .info-text { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
-        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
-        .result-card { padding: 1.25rem; border-radius: 0.75rem; border: 1px solid; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f9fafb;
+            padding: 1.5rem;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            font-size: 2rem;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            color: #6b7280;
+        }
+        .mode-badge {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: #dbeafe;
+            border-radius: 0.5rem;
+            display: inline-block;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        .card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.75rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        .btn-success {
+            background: #16a34a;
+            color: white;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            background: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+        }
+        .input-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.75rem;
+        }
+        .input-group select,
+        .input-group input {
+            width: 100%;
+            padding: 0.625rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .input-group input[type="number"] {
+            font-weight: bold;
+        }
+        .input-with-unit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .input-with-unit input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        .input-with-unit span {
+            font-weight: 600;
+            color: #4b5563;
+            white-space: nowrap;
+        }
+        .info-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        .result-card {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid;
+        }
         .result-card.blue { background: #eff6ff; border-color: #bfdbfe; }
         .result-card.green { background: #f0fdf4; border-color: #bbf7d0; }
         .result-card.purple { background: #faf5ff; border-color: #e9d5ff; }
@@ -48,7 +163,11 @@
         .result-card.indigo { background: #eef2ff; border-color: #c7d2fe; }
         .result-card.violet { background: #f5f3ff; border-color: #ddd6fe; }
         .result-card.amber { background: #fffbeb; border-color: #fde68a; }
-        .result-label { font-size: 0.75rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .result-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
         .result-card.blue .result-label { color: #1e40af; }
         .result-card.green .result-label { color: #15803d; }
         .result-card.purple .result-label { color: #6b21a8; }
@@ -59,7 +178,11 @@
         .result-card.indigo .result-label { color: #3730a3; }
         .result-card.violet .result-label { color: #5b21b6; }
         .result-card.amber .result-label { color: #b45309; }
-        .result-value { font-size: 1.875rem; font-weight: bold; margin-bottom: 0.25rem; }
+        .result-value {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
         .result-card.blue .result-value { color: #1d4ed8; }
         .result-card.green .result-value { color: #16a34a; }
         .result-card.purple .result-value { color: #7c3aed; }
@@ -70,31 +193,83 @@
         .result-card.indigo .result-value { color: #4f46e5; }
         .result-card.violet .result-value { color: #7c3aed; }
         .result-card.amber .result-value { color: #d97706; }
-        .result-unit { font-size: 0.75rem; color: #4b5563; }
-        .info-box { background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%); border: 1px solid #93c5fd; border-radius: 1rem; padding: 2rem; }
-        .info-box h3 { font-size: 1.25rem; font-weight: bold; color: #111827; margin-bottom: 1rem; }
-        .info-box p { color: #374151; font-size: 0.875rem; margin-bottom: 0.625rem; line-height: 1.6; }
-        .info-box strong { color: #1e40af; }
-        .custom-inputs { display: none; margin-top: 0.75rem; }
-        .custom-inputs.active { display: block; }
-        .custom-input-item { margin-bottom: 0.75rem; }
-        .custom-input-item label { display: block; font-size: 0.75rem; font-weight: 600; color: #4b5563; margin-bottom: 0.25rem; }
-        .custom-input-item input { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-weight: bold; }
-        @media (max-width: 768px) { body { padding: 1rem; } .header h1 { font-size: 1.5rem; } .card { padding: 1.25rem; } .result-value { font-size: 1.5rem; } }
+        .result-unit {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border: 1px solid #93c5fd;
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+        .info-box h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        .info-box p {
+            color: #374151;
+            font-size: 0.875rem;
+            margin-bottom: 0.625rem;
+            line-height: 1.6;
+        }
+        .info-box strong {
+            color: #1e40af;
+        }
+        .custom-inputs {
+            display: none;
+            margin-top: 0.75rem;
+        }
+        .custom-inputs.active {
+            display: block;
+        }
+        .custom-input-item {
+            margin-bottom: 0.75rem;
+        }
+        .custom-input-item label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 0.25rem;
+        }
+        .custom-input-item input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1.25rem;
+            }
+            .result-value {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Battery Electrode Property Calculator</h1>
-            <p>Calculate electrode density and porosity based on manufacturing parameters</p>
-            <div class="mode-badge">📐 Cell Design Mode</div>
+            <p>Calculate electrode density and porosity based on actual manufacturing conditions</p>
+            <div class="mode-badge">📐 Design Mode</div>
         </div>
 
         <div class="card">
-            <h2 class="card-title">Slurry Composition</h2>
+            <h2 class="card-title">Electrode Composition</h2>
             <div class="info-text" style="margin-bottom: 1rem; padding: 0.75rem; background: #eff6ff; border-radius: 0.5rem; border: 1px solid #bfdbfe;">
-                ℹ️ All values are based on <strong>Weight Percentage (wt%)</strong>
+                ℹ️ All ratios are based on <strong>Weight (wt%)</strong>
             </div>
             
             <div class="section-title">Electrode Type</div>
@@ -105,7 +280,7 @@
 
             <div class="grid">
                 <div class="input-group">
-                    <label>Active Material Content</label>
+                    <label>Active Material (wt%)</label>
                     <select id="activeMaterial">
                         <option value="NCM811">NCM811</option>
                         <option value="NCM622">NCM622</option>
@@ -134,12 +309,12 @@
                     <div class="info-text" id="activeMaterialInfo">Density: 4.70 g/cm³<br>Spec. Capacity: 200 mAh/g<br>Nominal Voltage: 3.7 V<br>Voltage Range: 3.0-4.2 V</div>
                     <div class="input-with-unit" style="margin-top: 0.5rem;">
                         <input type="number" id="activeMaterialRatio" inputmode="decimal" value="94" step="0.1" min="80" max="98">
-                        <span>wt%</span>
+                        <span>%</span>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label>Binder Content</label>
+                    <label>Binder (wt%)</label>
                     <select id="binder">
                         <option value="PVDF">PVDF</option>
                         <option value="SBR">SBR</option>
@@ -159,19 +334,19 @@
                     </div>
                     <div class="input-with-unit">
                         <input type="number" id="binderRatio" inputmode="decimal" value="3" step="0.1" min="1" max="10">
-                        <span>wt%</span>
+                        <span>%</span>
                     </div>
                     <div class="info-text" id="binderInfo">Density: 1.78 g/cm³</div>
                 </div>
 
                 <div class="input-group">
-                    <label>Conductive Additive</label>
+                    <label>Conductor (wt%)</label>
                     <select id="conductor">
                         <option value="Carbon Black">Carbon Black</option>
                         <option value="Super-P">Super-P</option>
                         <option value="CNT">CNT</option>
                         <option value="Graphene">Graphene</option>
-                        <option value="Custom">Custom Additive</option>
+                        <option value="Custom">Custom Conductor</option>
                     </select>
                     <div class="custom-inputs" id="customConductorInputs">
                         <div class="custom-input-item">
@@ -185,7 +360,7 @@
                     </div>
                     <div class="input-with-unit">
                         <input type="number" id="conductorRatio" inputmode="decimal" value="3" step="0.1" min="1" max="10">
-                        <span>wt%</span>
+                        <span>%</span>
                     </div>
                     <div class="info-text" id="conductorInfo">Density: 1.95 g/cm³</div>
                 </div>
@@ -193,25 +368,24 @@
 
             <div class="grid">
                 <div class="input-group">
-                    <label>Mass Loading</label>
+                    <label>Coating Weight (Loading)</label>
                     <div class="input-with-unit">
                         <input type="number" id="coatingWeight" inputmode="decimal" value="" step="0.1" min="5" max="30" placeholder="e.g. 15.0">
                         <span>mg/cm²</span>
                     </div>
-                    <div class="info-text">Total coating weight per side</div>
                 </div>
 
                 <div class="input-group">
-                    <label>Thickness (Calendered)</label>
+                    <label>Thickness (After Pressing)</label>
                     <div class="input-with-unit">
                         <input type="number" id="coatingThickness" inputmode="decimal" value="" step="1" min="40" max="150" placeholder="e.g. 80">
                         <span>μm</span>
                     </div>
-                    <div class="info-text">After calendering process<br>Target porosity: 30-40%</div>
+                    <div class="info-text">Enter thickness after calendering<br>Target porosity: 30-40%</div>
                 </div>
 
                 <div class="input-group">
-                    <label>Electrode Area</label>
+                    <label>Coating Area</label>
                     <div class="input-with-unit">
                         <input type="number" id="coatingArea" inputmode="decimal" value="" step="10" min="50" max="500" placeholder="e.g. 100">
                         <span>cm²</span>
@@ -221,14 +395,14 @@
         </div>
 
         <div class="card" id="resultsCard">
-            <h2 class="card-title">Simulation Results</h2>
+            <h2 class="card-title">Results (Design)</h2>
             <div class="result-grid" id="resultsGrid"></div>
         </div>
 
         <div class="card" id="npRatioCard">
-            <h2 class="card-title">N/P Ratio Analysis</h2>
+            <h2 class="card-title">N/P Ratio Calculation</h2>
             <div class="info-text" style="margin-bottom: 1rem; padding: 0.75rem; background: #fef3c7; border-radius: 0.5rem; border: 1px solid #fde68a;">
-                ℹ️ N/P Ratio = Anode Capacity / Cathode Capacity (Optimal: 1.05~1.15)
+                ℹ️ N/P Ratio = Anode Capacity / Cathode Capacity (Recommended: 1.0~1.2)
             </div>
             <div class="input-group" style="max-width: 300px; margin-bottom: 1.5rem;">
                 <label>Target N/P Ratio</label>
@@ -236,55 +410,62 @@
                     <input type="number" id="targetNPRatio" inputmode="decimal" value="1.1" step="0.05" min="0.8" max="1.5">
                     <span>-</span>
                 </div>
-                <div class="info-text">Design goal</div>
+                <div class="info-text">Design goal for N/P ratio</div>
             </div>
             <div class="result-grid" id="npRatioGrid"></div>
         </div>
 
         <div class="card" id="experimentalCard">
-            <h2 class="card-title">🔬 Experimental Validation</h2>
+            <h2 class="card-title">🔬 Experimental Data Comparison</h2>
             <div class="info-text" style="margin-bottom: 1.5rem; padding: 0.75rem; background: #f0fdf4; border-radius: 0.5rem; border: 1px solid #bbf7d0;">
-                ℹ️ Input measured discharge capacity for validation (auto-converts units)
+                ℹ️ Enter measured discharge capacity in either mAh/cm² or mAh/g (auto-converts)
             </div>
             <div class="grid">
                 <div class="input-group">
-                    <label>Measured Areal Capacity</label>
+                    <label>Measured Capacity (Areal)</label>
                     <div class="input-with-unit">
                         <input type="number" id="measuredCapacity" inputmode="decimal" value="" step="0.01" min="0" placeholder="e.g. 2.5">
                         <span>mAh/cm²</span>
                     </div>
+                    <div class="info-text">Experimental Areal Capacity</div>
                 </div>
                 <div class="input-group">
-                    <label>Measured Spec. Capacity</label>
+                    <label>Measured Capacity (Gravimetric)</label>
                     <div class="input-with-unit">
                         <input type="number" id="measuredCapacityGravimetric" inputmode="decimal" value="" step="0.1" min="0" placeholder="e.g. 140">
                         <span>mAh/g</span>
                     </div>
+                    <div class="info-text">Experimental Gravimetric Capacity</div>
                 </div>
                 <div class="input-group">
-                    <label>C-rate</label>
+                    <label>Measured C-rate</label>
                     <div class="input-with-unit">
                         <input type="number" id="measuredCrate" inputmode="decimal" value="0.1" step="0.1" min="0.05" max="5">
                         <span>C</span>
                     </div>
+                    <div class="info-text">C-rate used during measurement</div>
                 </div>
             </div>
             <div class="result-grid" id="experimentalGrid"></div>
         </div>
 
         <div class="info-box">
-            <h3>Methodology</h3>
-            <p><strong>Theoretical Density:</strong> ρ_theo = 1 / Σ(w_i / ρ_i), using the Rule of Mixtures.</p>
-            <p><strong>Electrode Density (Pressed):</strong> ρ_actual = Mass Loading / Coating Thickness.</p>
-            <p><strong>Porosity:</strong> ε = 1 - (ρ_actual / ρ_theo). Represents void fraction for electrolyte wetting.</p>
-            <p><strong>Areal Capacity:</strong> Q_areal = Loading × Active Material Fraction × Specific Capacity.</p>
-            <p><strong>Volumetric Energy Density:</strong> E_vol = (Q_areal × Nominal Voltage) / Thickness.</p>
-            <p><strong>N/P Ratio:</strong> Balancing factor between Anode/Cathode capacities to prevent Li-plating (<1.0) or waste (>1.2).</p>
+            <h3>Calculation Principles</h3>
+            <p><strong>Theoretical Density:</strong> ρ_theo = 1 / Σ(w_i / ρ_i), based on Rule of Mixtures.</p>
+            <p><strong>Actual Density:</strong> ρ_actual = Coating Weight / Coating Volume (density after pressing).</p>
+            <p><strong>Porosity:</strong> ε = 1 - (ρ_actual / ρ_theo), ratio of void space for electrolyte.</p>
+            <p><strong>⚠️ Pressing Guide:</strong> Input thickness after calendering. To achieve 30-40% porosity, ~40-50% compression from initial thickness is typically needed.</p>
+            <p><strong>Areal Capacity:</strong> C_areal = Loading × Active Material Ratio × Specific Capacity.</p>
+            <p><strong>💡 Specific Capacity:</strong> The capacity value used is the reversible capacity typically reported in literature for the given voltage range.</p>
+            <p><strong>Volumetric Energy Density:</strong> E_vol = (C_areal × Nominal Voltage) / Thickness (Wh/L).</p>
+            <p><strong>Gravimetric Capacity:</strong> C_grav = Total Capacity / Coating Weight (excluding current collector, for research comparison).</p>
+            <p><strong>N/P Ratio:</strong> Automatically calculates required counter-electrode capacity. 1.0~1.2 is optimal (<1.0: Risk of Li plating, >1.2: Capacity waste).</p>
+            <p><strong>🔬 Experimental Comparison:</strong> Calculates capacity retention and difference vs. design values (>85% retention is generally considered good).</p>
+            <p><strong>Optimal Conditions:</strong> Porosity 30-40%, Loading 10-20 mg/cm², Density 2.5-3.5 g/cm³.</p>
         </div>
     </div>
 
     <script>
-        // Data unchanged, only labels updated in JS output
         const materials = {
             cathode: {
                 'NCM811': { density: 4.70, capacity: 200, nominalVoltage: 3.7, lowerCutoff: 3.0, upperCutoff: 4.2 },
@@ -418,7 +599,7 @@
             }
         });
 
-        // Auto conversion
+        // Auto conversion between Areal and Gravimetric Capacity
         document.getElementById('measuredCapacity').addEventListener('blur', (e) => {
             const arealCap = parseFloat(e.target.value);
             const coatingWeight = parseFloat(document.getElementById('coatingWeight').value);
@@ -523,22 +704,24 @@
             let requiredCounterCapacity, npRatioStatus;
             
             if (electrodeType === 'cathode') {
+                // Design Cathode: Required Anode = Cathode * Ratio
                 requiredCounterCapacity = areal_capacity * targetNPRatio;
-                npRatioStatus = targetNPRatio >= 1.05 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
+                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
             } else {
+                // Design Anode: Required Cathode = Anode / Ratio
                 requiredCounterCapacity = areal_capacity / targetNPRatio;
-                npRatioStatus = targetNPRatio >= 1.05 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
+                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
             }
 
             const results = [
                 { label: 'Theoretical Density', value: rho_theoretical.toFixed(3), unit: 'g/cm³', color: 'blue' },
-                { label: 'Electrode Density', value: rho_actual.toFixed(3), unit: 'g/cm³', color: 'green' },
+                { label: 'Actual Density', value: rho_actual.toFixed(3), unit: 'g/cm³', color: 'green' },
                 { label: 'Porosity', value: porosityPercent.toFixed(2), unit: '%', color: 'purple' },
-                { label: 'Mass Loading', value: coatingWeight.toFixed(2), unit: 'mg/cm²', color: 'orange' },
+                { label: 'Loading', value: coatingWeight.toFixed(2), unit: 'mg/cm²', color: 'orange' },
                 { label: 'Areal Capacity', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'yellow' },
-                { label: 'Volumetric Energy', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'pink' },
-                { label: 'Volumetric Cap.', value: (areal_capacity / coatingThickness_cm).toFixed(1), unit: 'mAh/cm³', color: 'cyan' },
-                { label: 'Gravimetric Cap.', value: gravimetric_capacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
+                { label: 'Volumetric E-Density', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'pink' },
+                { label: 'Volumetric Capacity', value: (areal_capacity / coatingThickness_cm).toFixed(1), unit: 'mAh/cm³', color: 'cyan' },
+                { label: 'Gravimetric Capacity', value: gravimetric_capacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
                 { label: 'Active Vol. Fraction', value: ((1 - porosity) * w_active).toFixed(3), unit: '-', color: 'violet' },
                 { label: 'Nominal Voltage', value: nominalVoltage.toFixed(2), unit: 'V', color: 'amber' }
             ];
@@ -547,13 +730,13 @@
                 { label: electrodeType === 'cathode' ? 'Cathode Cap (Design)' : 'Anode Cap (Design)', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
                 { label: electrodeType === 'cathode' ? 'Required Anode Cap' : 'Required Cathode Cap', value: requiredCounterCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
                 { label: 'Target N/P Ratio', value: targetNPRatio.toFixed(2), unit: '-', color: 'amber' },
-                { label: 'Status', value: npRatioStatus, unit: '', color: targetNPRatio >= 1.05 && targetNPRatio <= 1.15 ? 'green' : 'orange' }
+                { label: 'Status', value: npRatioStatus, unit: '', color: targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'green' : 'orange' }
             ];
 
             displayResults(results, 'resultsGrid');
             displayResults(npRatioResults, 'npRatioGrid');
 
-            // Experimental Data
+            // Experimental Data Comparison
             const measuredCapacity = parseFloat(document.getElementById('measuredCapacity').value);
             if (measuredCapacity && measuredCapacity > 0) {
                 const capacityRetention = (measuredCapacity / areal_capacity) * 100;
@@ -563,11 +746,11 @@
                 const energyRetention = (measuredVolumetricEnergy / energy_density_volumetric) * 100;
                 
                 let retentionStatus;
-                if (capacityRetention >= 98) {
+                if (capacityRetention >= 95) {
                     retentionStatus = '✅ Excellent';
-                } else if (capacityRetention >= 90) {
+                } else if (capacityRetention >= 85) {
                     retentionStatus = '✓ Good';
-                } else if (capacityRetention >= 80) {
+                } else if (capacityRetention >= 70) {
                     retentionStatus = '⚠️ Average';
                 } else {
                     retentionStatus = '⚠️ Poor';
@@ -576,18 +759,18 @@
                 const experimentalResults = [
                     { label: 'Design Capacity', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
                     { label: 'Measured Capacity', value: measuredCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
-                    { label: 'Retention', value: capacityRetention.toFixed(1), unit: '%', color: capacityRetention >= 90 ? 'green' : 'orange' },
+                    { label: 'Retention', value: capacityRetention.toFixed(1), unit: '%', color: capacityRetention >= 85 ? 'green' : 'orange' },
                     { label: 'Difference', value: capacityDifference.toFixed(2), unit: 'mAh/cm²', color: capacityDifference >= 0 ? 'cyan' : 'pink' },
                     { label: 'Measured Grav. Cap', value: measuredGravimetricCapacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
-                    { label: 'Design Vol. Energy', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'violet' },
-                    { label: 'Measured Vol. Energy', value: measuredVolumetricEnergy.toFixed(1), unit: 'Wh/L', color: 'purple' },
-                    { label: 'Energy Retention', value: energyRetention.toFixed(1), unit: '%', color: energyRetention >= 90 ? 'green' : 'orange' },
-                    { label: 'Status', value: retentionStatus, unit: '', color: capacityRetention >= 90 ? 'green' : 'orange' }
+                    { label: 'Design E-Density', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'violet' },
+                    { label: 'Measured E-Density', value: measuredVolumetricEnergy.toFixed(1), unit: 'Wh/L', color: 'purple' },
+                    { label: 'Energy Retention', value: energyRetention.toFixed(1), unit: '%', color: energyRetention >= 85 ? 'green' : 'orange' },
+                    { label: 'Status', value: retentionStatus, unit: '', color: capacityRetention >= 85 ? 'green' : 'orange' }
                 ];
                 
                 displayResults(experimentalResults, 'experimentalGrid');
             } else {
-                document.getElementById('experimentalGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">Input measured capacity to validate design</div>';
+                document.getElementById('experimentalGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">Please enter measured discharge capacity</div>';
             }
         }
 
