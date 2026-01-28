@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battery Electrode Property Calculator</title>
     
+    <!-- PWA Settings -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Electrode Calc">
+    <meta name="apple-mobile-web-app-title" content="Electrode Calculator">
     <meta name="theme-color" content="#2563eb">
     <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQmF0dGVyeSBFbGVjdHJvZGUgUHJvcGVydHkgQ2FsY3VsYXRvciIsInNob3J0X25hbWUiOiJFbGVjdHJvZGUgQ2FsYyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjlmYWZiIiwidGhlbWVfY29sb3IiOiIjMjU2M2ViIiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI1LzI1NjE5LnBuZyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
     
@@ -262,14 +263,14 @@
     <div class="container">
         <div class="header">
             <h1>Battery Electrode Property Calculator</h1>
-            <p>Calculate electrode density and porosity based on actual manufacturing conditions</p>
+            <p>Calculate electrode density and porosity based on actual battery manufacturing conditions</p>
             <div class="mode-badge">📐 Design Mode</div>
         </div>
 
         <div class="card">
-            <h2 class="card-title">Electrode Composition</h2>
+            <h2 class="card-title">Electrode Configuration</h2>
             <div class="info-text" style="margin-bottom: 1rem; padding: 0.75rem; background: #eff6ff; border-radius: 0.5rem; border: 1px solid #bfdbfe;">
-                ℹ️ All ratios are based on <strong>Weight (wt%)</strong>
+                ℹ️ All percentages are <strong>by weight (wt%)</strong>
             </div>
             
             <div class="section-title">Electrode Type</div>
@@ -290,15 +291,15 @@
                     </select>
                     <div class="custom-inputs" id="customMaterialInputs">
                         <div class="custom-input-item">
-                            <label>Name (Optional)</label>
-                            <input type="text" id="customName" placeholder="e.g. NMC532, LNMO">
+                            <label>Material Name (optional)</label>
+                            <input type="text" id="customName" placeholder="e.g., NMC532, LNMO">
                         </div>
                         <div class="custom-input-item">
                             <label>Density (g/cm³)</label>
                             <input type="number" id="customDensity" inputmode="decimal" value="4.00" step="0.01" min="1" max="10">
                         </div>
                         <div class="custom-input-item">
-                            <label>Specific Capacity (mAh/g)</label>
+                            <label>Capacity (mAh/g)</label>
                             <input type="number" id="customCapacity" inputmode="decimal" value="180" step="1" min="50" max="1000">
                         </div>
                         <div class="custom-input-item">
@@ -306,7 +307,7 @@
                             <input type="number" id="customVoltage" inputmode="decimal" value="3.7" step="0.1" min="0.1" max="5.0">
                         </div>
                     </div>
-                    <div class="info-text" id="activeMaterialInfo">Density: 4.70 g/cm³<br>Spec. Capacity: 200 mAh/g<br>Nominal Voltage: 3.7 V<br>Voltage Range: 3.0-4.2 V</div>
+                    <div class="info-text" id="activeMaterialInfo">Density: 4.70 g/cm³<br>Capacity: 200 mAh/g<br>Nominal Voltage: 3.7 V<br>Recommended Voltage Range: 3.0-4.2 V</div>
                     <div class="input-with-unit" style="margin-top: 0.5rem;">
                         <input type="number" id="activeMaterialRatio" inputmode="decimal" value="94" step="0.1" min="80" max="98">
                         <span>%</span>
@@ -324,8 +325,8 @@
                     </select>
                     <div class="custom-inputs" id="customBinderInputs">
                         <div class="custom-input-item">
-                            <label>Name (Optional)</label>
-                            <input type="text" id="customBinderName" placeholder="e.g. PVA, PTFE">
+                            <label>Binder Name (optional)</label>
+                            <input type="text" id="customBinderName" placeholder="e.g., PVA, PTFE">
                         </div>
                         <div class="custom-input-item">
                             <label>Density (g/cm³)</label>
@@ -340,7 +341,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label>Conductor (wt%)</label>
+                    <label>Conductive Additive (wt%)</label>
                     <select id="conductor">
                         <option value="Carbon Black">Carbon Black</option>
                         <option value="Super-P">Super-P</option>
@@ -350,8 +351,8 @@
                     </select>
                     <div class="custom-inputs" id="customConductorInputs">
                         <div class="custom-input-item">
-                            <label>Name (Optional)</label>
-                            <input type="text" id="customConductorName" placeholder="e.g. VGCF, KB">
+                            <label>Conductor Name (optional)</label>
+                            <input type="text" id="customConductorName" placeholder="e.g., VGCF, KB">
                         </div>
                         <div class="custom-input-item">
                             <label>Density (g/cm³)</label>
@@ -368,26 +369,26 @@
 
             <div class="grid">
                 <div class="input-group">
-                    <label>Coating Weight (Loading)</label>
+                    <label>Coating Loading (mg/cm²)</label>
                     <div class="input-with-unit">
-                        <input type="number" id="coatingWeight" inputmode="decimal" value="" step="0.1" min="5" max="30" placeholder="e.g. 15.0">
+                        <input type="number" id="coatingWeight" inputmode="decimal" value="" step="0.1" min="5" max="30" placeholder="e.g., 15.0">
                         <span>mg/cm²</span>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label>Thickness (After Pressing)</label>
+                    <label>Coating Thickness (after compression)</label>
                     <div class="input-with-unit">
-                        <input type="number" id="coatingThickness" inputmode="decimal" value="" step="1" min="40" max="150" placeholder="e.g. 80">
+                        <input type="number" id="coatingThickness" inputmode="decimal" value="" step="1" min="40" max="150" placeholder="e.g., 80">
                         <span>μm</span>
                     </div>
-                    <div class="info-text">Enter thickness after calendering<br>Target porosity: 30-40%</div>
+                    <div class="info-text">Enter thickness after calendaring<br>Target porosity 30-40%</div>
                 </div>
 
                 <div class="input-group">
                     <label>Coating Area</label>
                     <div class="input-with-unit">
-                        <input type="number" id="coatingArea" inputmode="decimal" value="" step="10" min="50" max="500" placeholder="e.g. 100">
+                        <input type="number" id="coatingArea" inputmode="decimal" value="" step="10" min="50" max="500" placeholder="e.g., 100">
                         <span>cm²</span>
                     </div>
                 </div>
@@ -395,14 +396,14 @@
         </div>
 
         <div class="card" id="resultsCard">
-            <h2 class="card-title">Results (Design)</h2>
+            <h2 class="card-title">Calculation Results (for design)</h2>
             <div class="result-grid" id="resultsGrid"></div>
         </div>
 
         <div class="card" id="npRatioCard">
-            <h2 class="card-title">N/P Ratio Calculation</h2>
+            <h2 class="card-title">N/P Ratio Calculation (N/P Ratio Calculation)</h2>
             <div class="info-text" style="margin-bottom: 1rem; padding: 0.75rem; background: #fef3c7; border-radius: 0.5rem; border: 1px solid #fde68a;">
-                ℹ️ N/P Ratio = Anode Capacity / Cathode Capacity (Recommended: 1.0~1.2)
+                ℹ️ N/P Ratio = Cathode capacity / Anode capacity (Recommended: 1.0~1.2)
             </div>
             <div class="input-group" style="max-width: 300px; margin-bottom: 1.5rem;">
                 <label>Target N/P Ratio</label>
@@ -410,7 +411,7 @@
                     <input type="number" id="targetNPRatio" inputmode="decimal" value="1.1" step="0.05" min="0.8" max="1.5">
                     <span>-</span>
                 </div>
-                <div class="info-text">Design goal for N/P ratio</div>
+                <div class="info-text">Electrode design target N/P ratio</div>
             </div>
             <div class="result-grid" id="npRatioGrid"></div>
         </div>
@@ -418,32 +419,32 @@
         <div class="card" id="experimentalCard">
             <h2 class="card-title">🔬 Experimental Data Comparison</h2>
             <div class="info-text" style="margin-bottom: 1.5rem; padding: 0.75rem; background: #f0fdf4; border-radius: 0.5rem; border: 1px solid #bbf7d0;">
-                ℹ️ Enter measured discharge capacity in either mAh/cm² or mAh/g (auto-converts)
+                ℹ️ Enter the actual measured discharge capacity in mAh/cm² or mAh/g (automatically converted)
             </div>
             <div class="grid">
                 <div class="input-group">
-                    <label>Measured Capacity (Areal)</label>
+                    <label>Measured Capacity (Areal Basis)</label>
                     <div class="input-with-unit">
-                        <input type="number" id="measuredCapacity" inputmode="decimal" value="" step="0.01" min="0" placeholder="e.g. 2.5">
+                        <input type="number" id="measuredCapacity" inputmode="decimal" value="" step="0.01" min="0" placeholder="e.g., 2.5">
                         <span>mAh/cm²</span>
                     </div>
-                    <div class="info-text">Experimental Areal Capacity</div>
+                    <div class="info-text">Measured areal discharge capacity from experiments</div>
                 </div>
                 <div class="input-group">
-                    <label>Measured Capacity (Gravimetric)</label>
+                    <label>Measured Capacity (Gravimetric Basis)</label>
                     <div class="input-with-unit">
-                        <input type="number" id="measuredCapacityGravimetric" inputmode="decimal" value="" step="0.1" min="0" placeholder="e.g. 140">
+                        <input type="number" id="measuredCapacityGravimetric" inputmode="decimal" value="" step="0.1" min="0" placeholder="e.g., 140">
                         <span>mAh/g</span>
                     </div>
-                    <div class="info-text">Experimental Gravimetric Capacity</div>
+                    <div class="info-text">Measured gravimetric discharge capacity from experiments</div>
                 </div>
                 <div class="input-group">
-                    <label>Measured C-rate</label>
+                    <label>Measurement C-rate</label>
                     <div class="input-with-unit">
                         <input type="number" id="measuredCrate" inputmode="decimal" value="0.1" step="0.1" min="0.05" max="5">
                         <span>C</span>
                     </div>
-                    <div class="info-text">C-rate used during measurement</div>
+                    <div class="info-text">C-rate used during capacity measurement</div>
                 </div>
             </div>
             <div class="result-grid" id="experimentalGrid"></div>
@@ -451,17 +452,20 @@
 
         <div class="info-box">
             <h3>Calculation Principles</h3>
-            <p><strong>Theoretical Density:</strong> ρ_theo = 1 / Σ(w_i / ρ_i), based on Rule of Mixtures.</p>
-            <p><strong>Actual Density:</strong> ρ_actual = Coating Weight / Coating Volume (density after pressing).</p>
-            <p><strong>Porosity:</strong> ε = 1 - (ρ_actual / ρ_theo), ratio of void space for electrolyte.</p>
-            <p><strong>⚠️ Pressing Guide:</strong> Input thickness after calendering. To achieve 30-40% porosity, ~40-50% compression from initial thickness is typically needed.</p>
-            <p><strong>Areal Capacity:</strong> C_areal = Loading × Active Material Ratio × Specific Capacity.</p>
-            <p><strong>💡 Specific Capacity:</strong> The capacity value used is the reversible capacity typically reported in literature for the given voltage range.</p>
-            <p><strong>Volumetric Energy Density:</strong> E_vol = (C_areal × Nominal Voltage) / Thickness (Wh/L).</p>
-            <p><strong>Gravimetric Capacity:</strong> C_grav = Total Capacity / Coating Weight (excluding current collector, for research comparison).</p>
-            <p><strong>N/P Ratio:</strong> Automatically calculates required counter-electrode capacity. 1.0~1.2 is optimal (<1.0: Risk of Li plating, >1.2: Capacity waste).</p>
-            <p><strong>🔬 Experimental Comparison:</strong> Calculates capacity retention and difference vs. design values (>85% retention is generally considered good).</p>
-            <p><strong>Optimal Conditions:</strong> Porosity 30-40%, Loading 10-20 mg/cm², Density 2.5-3.5 g/cm³.</p>
+            <p><strong>Theoretical Density:</strong> ρ_theoretical = 1 / Σ(w_i / ρ_i), Rule of Mixtures method</p>
+            <p><strong>Actual Density:</strong> ρ_actual = coating weight / coating volume, actual density after calendaring</p>
+            <p><strong>Porosity:</strong> ε = 1 - (ρ_actual / ρ_theoretical), electrolyte volume fraction</p>
+            <p><strong>⚠️ Calendaring Guide:</strong> Enter coating thickness after calendaring. For target porosity of 30-40%, approximately 40-50% compression from initial thickness is required</p>
+            <p><strong>Areal Capacity:</strong> C_areal = loading × active material ratio × usable capacity</p>
+            <p><strong>💡 Usable Capacity:</strong> Entered capacity is the commonly reported usable capacity value from literature (based on specific voltage range)</p>
+            <p><strong>Volumetric Energy Density:</strong> E_volumetric = (C_areal × nominal voltage) / thickness, (mAh/cm² × V) / cm = Wh/L</p>
+            <p><strong>Gravimetric Capacity:</strong> C_gravimetric = total capacity / coating weight (excluding current collector, for paper comparison)</p>
+            <p><strong>Active Material Volume Fraction (Solid):</strong> φ_solid = (w_a/ρ_a) / Σ(w_i/ρ_i), volume fraction of active material among solid components (considering density differences)</p>
+            <p><strong>Active Material Volume Fraction (Electrode):</strong> φ_total = (1-ε) × φ_solid, volume fraction of active material in the entire electrode including pores</p>
+            <p><strong>⚠️ Note:</strong> Weight fraction ≠ Volume fraction! Conversion using (w_i/ρ_i) is necessary due to density differences</p>
+            <p><strong>N/P Ratio:</strong> When target N/P ratio is entered, the required relative electrode capacity is automatically calculated. Optimal range is 1.0~1.2 (below 1.0: risk of lithium plating, above 1.2: capacity waste)</p>
+            <p><strong>🔬 Experimental Comparison:</strong> Measured capacity can be entered in mAh/cm² or mAh/g (automatically converted). Calculates capacity retention and difference compared to design values (85% or higher: good)</p>
+            <p><strong>Optimal Conditions:</strong> Porosity 30-40%, loading 10-20 mg/cm², density 2.5-3.5 g/cm³</p>
         </div>
     </div>
 
@@ -533,7 +537,7 @@
             });
             const customOption = document.createElement('option');
             customOption.value = 'Custom';
-            customOption.textContent = 'Custom Active Material';
+            customOption.textContent = 'Custom active material';
             activeMaterialSelect.appendChild(customOption);
             updateMaterialInfo();
         }
@@ -547,7 +551,7 @@
                 customMaterialInputs.classList.remove('active');
                 activeMaterialInfo.style.display = 'block';
                 const mat = materials[electrodeType][material];
-                activeMaterialInfo.innerHTML = `Density: ${mat.density} g/cm³<br>Spec. Capacity: ${mat.capacity} mAh/g<br>Nominal Voltage: ${mat.nominalVoltage} V<br>Voltage Range: ${mat.lowerCutoff}-${mat.upperCutoff} V`;
+                activeMaterialInfo.innerHTML = `Density: ${mat.density} g/cm³<br>Usable Capacity: ${mat.capacity} mAh/g<br>Nominal Voltage: ${mat.nominalVoltage} V<br>Recommended Voltage Range: ${mat.lowerCutoff}-${mat.upperCutoff} V`;
             }
         }
 
@@ -599,7 +603,7 @@
             }
         });
 
-        // Auto conversion between Areal and Gravimetric Capacity
+        // Automatic conversion between areal capacity and gravimetric capacity (after input completion)
         document.getElementById('measuredCapacity').addEventListener('blur', (e) => {
             const arealCap = parseFloat(e.target.value);
             const coatingWeight = parseFloat(document.getElementById('coatingWeight').value);
@@ -607,7 +611,7 @@
                 const gravCap = (arealCap * 1000) / coatingWeight;
                 document.getElementById('measuredCapacityGravimetric').value = gravCap.toFixed(1);
             }
-            calculate(); 
+            calculate(); // Recalculate immediately after conversion
         });
 
         document.getElementById('measuredCapacityGravimetric').addEventListener('blur', (e) => {
@@ -617,9 +621,10 @@
                 const arealCap = (gravCap * coatingWeight) / 1000;
                 document.getElementById('measuredCapacity').value = arealCap.toFixed(2);
             }
-            calculate(); 
+            calculate(); // Recalculate immediately after conversion
         });
 
+        // Automatic recalculation when coating weight changes (after input completion)
         document.getElementById('coatingWeight').addEventListener('blur', () => {
             const arealCap = parseFloat(document.getElementById('measuredCapacity').value);
             const coatingWeight = parseFloat(document.getElementById('coatingWeight').value);
@@ -627,7 +632,7 @@
                 const gravCap = (arealCap * 1000) / coatingWeight;
                 document.getElementById('measuredCapacityGravimetric').value = gravCap.toFixed(1);
             }
-            calculate(); 
+            calculate(); // Recalculate immediately after conversion
         });
 
         function calculate() {
@@ -689,6 +694,11 @@
 
             const areal_capacity = coatingWeight * w_active * capacity / 1000;
             
+            // Calculation of active material volume fraction (correct method)
+            const denom = (w_active / rho_active) + (w_binder / rho_binder) + (w_conductor / rho_conductor);
+            const phi_active_solid = (w_active / rho_active) / denom; // Volume fraction of active material in solid
+            const phi_active_total = (1 - porosity) * phi_active_solid; // Volume fraction of active material in electrode
+            
             const coatingThickness_cm = coatingThickness * 1e-4;
             const energy_density_volumetric = (areal_capacity * nominalVoltage) / coatingThickness_cm;
 
@@ -699,18 +709,18 @@
             const cc_weight = rho_cc * cc_thickness * 1e-4 * coatingArea;
             const total_weight = cc_weight + coating_weight_g;
 
-            // N/P Ratio Calculation
+            // N/P Ratio calculation (based on target N/P ratio)
             const targetNPRatio = parseFloat(document.getElementById('targetNPRatio').value) || 1.1;
             let requiredCounterCapacity, npRatioStatus;
             
             if (electrodeType === 'cathode') {
-                // Design Cathode: Required Anode = Cathode * Ratio
+                // Designing cathode: Required anode capacity = cathode capacity × N/P ratio
                 requiredCounterCapacity = areal_capacity * targetNPRatio;
-                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
+                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of lithium plating' : '⚠️ Capacity waste';
             } else {
-                // Design Anode: Required Cathode = Anode / Ratio
+                // Designing anode: Required cathode capacity = anode capacity / N/P ratio
                 requiredCounterCapacity = areal_capacity / targetNPRatio;
-                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of Li Plating' : '⚠️ Capacity Waste';
+                npRatioStatus = targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'Optimal' : targetNPRatio < 1.0 ? '⚠️ Risk of lithium plating' : '⚠️ Capacity waste';
             }
 
             const results = [
@@ -719,16 +729,17 @@
                 { label: 'Porosity', value: porosityPercent.toFixed(2), unit: '%', color: 'purple' },
                 { label: 'Loading', value: coatingWeight.toFixed(2), unit: 'mg/cm²', color: 'orange' },
                 { label: 'Areal Capacity', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'yellow' },
-                { label: 'Volumetric E-Density', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'pink' },
+                { label: 'Volumetric Energy Density', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'pink' },
                 { label: 'Volumetric Capacity', value: (areal_capacity / coatingThickness_cm).toFixed(1), unit: 'mAh/cm³', color: 'cyan' },
                 { label: 'Gravimetric Capacity', value: gravimetric_capacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
-                { label: 'Active Vol. Fraction', value: ((1 - porosity) * w_active).toFixed(3), unit: '-', color: 'violet' },
-                { label: 'Nominal Voltage', value: nominalVoltage.toFixed(2), unit: 'V', color: 'amber' }
+                { label: 'Active Material Volume Fraction (Solid)', value: phi_active_solid.toFixed(3), unit: '-', color: 'violet' },
+                { label: 'Active Material Volume Fraction (Electrode)', value: phi_active_total.toFixed(3), unit: '-', color: 'amber' },
+                { label: 'Nominal Voltage', value: nominalVoltage.toFixed(2), unit: 'V', color: 'blue' }
             ];
 
             const npRatioResults = [
-                { label: electrodeType === 'cathode' ? 'Cathode Cap (Design)' : 'Anode Cap (Design)', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
-                { label: electrodeType === 'cathode' ? 'Required Anode Cap' : 'Required Cathode Cap', value: requiredCounterCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
+                { label: electrodeType === 'cathode' ? 'Cathode Capacity (Design)' : 'Anode Capacity (Design)', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
+                { label: electrodeType === 'cathode' ? 'Required Anode Capacity' : 'Required Cathode Capacity', value: requiredCounterCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
                 { label: 'Target N/P Ratio', value: targetNPRatio.toFixed(2), unit: '-', color: 'amber' },
                 { label: 'Status', value: npRatioStatus, unit: '', color: targetNPRatio >= 1.0 && targetNPRatio <= 1.2 ? 'green' : 'orange' }
             ];
@@ -736,7 +747,7 @@
             displayResults(results, 'resultsGrid');
             displayResults(npRatioResults, 'npRatioGrid');
 
-            // Experimental Data Comparison
+            // Experimental data comparison
             const measuredCapacity = parseFloat(document.getElementById('measuredCapacity').value);
             if (measuredCapacity && measuredCapacity > 0) {
                 const capacityRetention = (measuredCapacity / areal_capacity) * 100;
@@ -751,7 +762,7 @@
                 } else if (capacityRetention >= 85) {
                     retentionStatus = '✓ Good';
                 } else if (capacityRetention >= 70) {
-                    retentionStatus = '⚠️ Average';
+                    retentionStatus = '⚠️ Fair';
                 } else {
                     retentionStatus = '⚠️ Poor';
                 }
@@ -759,18 +770,18 @@
                 const experimentalResults = [
                     { label: 'Design Capacity', value: areal_capacity.toFixed(2), unit: 'mAh/cm²', color: 'blue' },
                     { label: 'Measured Capacity', value: measuredCapacity.toFixed(2), unit: 'mAh/cm²', color: 'green' },
-                    { label: 'Retention', value: capacityRetention.toFixed(1), unit: '%', color: capacityRetention >= 85 ? 'green' : 'orange' },
-                    { label: 'Difference', value: capacityDifference.toFixed(2), unit: 'mAh/cm²', color: capacityDifference >= 0 ? 'cyan' : 'pink' },
-                    { label: 'Measured Grav. Cap', value: measuredGravimetricCapacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
-                    { label: 'Design E-Density', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'violet' },
-                    { label: 'Measured E-Density', value: measuredVolumetricEnergy.toFixed(1), unit: 'Wh/L', color: 'purple' },
+                    { label: 'Capacity Retention', value: capacityRetention.toFixed(1), unit: '%', color: capacityRetention >= 85 ? 'green' : 'orange' },
+                    { label: 'Capacity Difference', value: capacityDifference.toFixed(2), unit: 'mAh/cm²', color: capacityDifference >= 0 ? 'cyan' : 'pink' },
+                    { label: 'Measured Gravimetric Cap.', value: measuredGravimetricCapacity.toFixed(1), unit: 'mAh/g', color: 'indigo' },
+                    { label: 'Design Energy Density', value: energy_density_volumetric.toFixed(1), unit: 'Wh/L', color: 'violet' },
+                    { label: 'Measured Energy Density', value: measuredVolumetricEnergy.toFixed(1), unit: 'Wh/L', color: 'purple' },
                     { label: 'Energy Retention', value: energyRetention.toFixed(1), unit: '%', color: energyRetention >= 85 ? 'green' : 'orange' },
                     { label: 'Status', value: retentionStatus, unit: '', color: capacityRetention >= 85 ? 'green' : 'orange' }
                 ];
                 
                 displayResults(experimentalResults, 'experimentalGrid');
             } else {
-                document.getElementById('experimentalGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">Please enter measured discharge capacity</div>';
+                document.getElementById('experimentalGrid').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">Please enter the actual measured discharge capacity</div>';
             }
         }
 
